@@ -9,11 +9,11 @@ const part1 = (rawInput: string) => {
     .split("");
   const lineLength = rawInput.split("\n")[0].length;
 
-  let weights: number[][] = new Array(lineLength).fill([]).map(() => []);
+  const weights: number[][] = new Array(lineLength).fill([]).map(() => []);
 
-  for (let [i, char] of input.entries()) {
-    let x = i % lineLength;
-    let y = Math.floor(i / lineLength);
+  for (const [i, char] of input.entries()) {
+    const x = i % lineLength;
+    const y = Math.floor(i / lineLength);
 
     weights[y][x] = Number(char);
   }
@@ -29,18 +29,18 @@ const part2 = (rawInput: string) => {
   const lineLength = rawInput.split("\n")[0].length;
   const maxRisk = 9;
 
-  let weights: number[][] = new Array(lineLength * largerTimes)
+  const weights: number[][] = new Array(lineLength * largerTimes)
     .fill([])
     .map(() => []);
 
-  for (let [i, char] of input.entries()) {
+  for (const [i, char] of input.entries()) {
     for (let j = 0; j < largerTimes; j++) {
-      let x = (i % lineLength) + lineLength * j;
+      const x = (i % lineLength) + lineLength * j;
 
       for (let k = 0; k < largerTimes; k++) {
-        let y = Math.floor(i / lineLength) + lineLength * k;
+        const y = Math.floor(i / lineLength) + lineLength * k;
 
-        let weight = Number(char) + j + k;
+        const weight = Number(char) + j + k;
         weights[y][x] = weight > maxRisk ? weight % maxRisk : weight;
       }
     }
@@ -50,7 +50,7 @@ const part2 = (rawInput: string) => {
 };
 
 function findPath(weights: number[][]): number {
-  let aStar: AStarFinder = new AStarFinder({
+  const aStar: AStarFinder = new AStarFinder({
     grid: {
       matrix: weights,
     },
@@ -60,15 +60,15 @@ function findPath(weights: number[][]): number {
     weight: 0.1,
   });
 
-  let startC = 0;
-  let lineLength = weights[0].length;
-  let myPathway = aStar.findPath(
+  const startC = 0;
+  const lineLength = weights[0].length;
+  const myPathway = aStar.findPath(
     { x: 0, y: 0 },
     { x: lineLength - 1, y: lineLength - 1 },
   );
 
   let totalWeight = 0;
-  for (let [x, y] of myPathway) {
+  for (const [x, y] of myPathway) {
     if (!(x == startC && y == startC)) {
       totalWeight += weights[y][x];
     }
