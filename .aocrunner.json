@@ -201,16 +201,16 @@
     },
     {
       "part1": {
-        "solved": false,
+        "solved": true,
         "result": "619",
-        "attempts": [],
-        "time": 110.112955
+        "attempts": [620, 619],
+        "time": 105.012325
       },
       "part2": {
-        "solved": false,
+        "solved": true,
         "result": "2922",
-        "attempts": [],
-        "time": 6508.902578
+        "attempts": [2924, 2922],
+        "time": 6253.608855
       }
     },
     {
